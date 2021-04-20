@@ -1,10 +1,28 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
+import { addLike } from '../actions';
 
 class Anime extends Component {
 
-    addLike = e => {
-        console.log(this)
+    state = {
+        likes: this.props.likes
+      
     }
+    handleChange = e => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+        addLike(this.props);
+    }
+
+
+    // addLike = e => {
+    //     let newLike = this.state.likes +1
+    //     this.setState({
+    //         likes: newLike
+    //     })
+
+    // }
     render() {
         const { title, release, genre, episodes, likes } = this.props;
         return (
@@ -13,10 +31,10 @@ class Anime extends Component {
                 <p>{ genre } </p>
                 <p>Episode Count: { episodes } </p>
                 <p>Release Year: { release } </p>
-                <button  onClick={ this.addLike } > Likes { likes } </button>
+                <button  onClick={ this.handleChange } value={ this.state.likes } name="likes"> Likes { likes } </button>
             </div>
         )
     }
 }
 
-export default Anime
+export default connect(null, { addLike })(Anime)

@@ -24,3 +24,23 @@ export const addAnime = (anime, history) => {
       })
   }
 }
+
+export const addLike = (anime, history) => {
+  let id = anime.i
+  console.log(anime)
+  return dispatch => {
+    fetch('http://localhost:3001/animes/' + id, {
+      method: "PATCH",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ anime })
+    })
+      .then(resp => resp.json())
+      .then(anime => {
+        dispatch({ type: "ADD_LIKE", anime })
+        history.push("/animes")
+      })
+  }
+}

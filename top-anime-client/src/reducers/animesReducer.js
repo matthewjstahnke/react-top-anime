@@ -21,6 +21,12 @@ const animesReducer = (state=initialState, action) => {
                 ...state,
                 animes: [...state.animes, action.anime]
             }
+        case "ADD_LIKE":
+            console.log(this.state.likes)
+            return {
+                ...state,
+                likes: this.state.likes + 1
+            }
         default:
             return state;
     }
