@@ -5,14 +5,18 @@ import { addLike } from '../actions';
 class Anime extends Component {
 
     state = {
-        likes: this.props.likes
+        likes: null,
+        id: null
       
     }
     handleChange = e => {
         this.setState({
             [e.target.name]: e.target.value
         })
-        addLike(this.props);
+        console.log(e.target.value)
+        console.log(this.props.history, "in hC")
+        console.log(this.state, "in hC")
+        this.props.addLike(this.state, this.props.history);
     }
 
 
@@ -24,7 +28,7 @@ class Anime extends Component {
 
     // }
     render() {
-        const { title, release, genre, episodes, likes } = this.props;
+        const { id, title, release, genre, episodes, likes } = this.props;
         return (
             <div>
                 <h4>{ title }</h4>
@@ -32,6 +36,7 @@ class Anime extends Component {
                 <p>Episode Count: { episodes } </p>
                 <p>Release Year: { release } </p>
                 <button  onClick={ this.handleChange } value={ this.state.likes } name="likes"> Likes { likes } </button>
+                <p> { id } </p>
             </div>
         )
     }

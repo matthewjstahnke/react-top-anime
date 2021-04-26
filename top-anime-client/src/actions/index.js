@@ -8,6 +8,7 @@ export const getAnimes = () => {
 }
 
 export const addAnime = (anime, history) => {
+  console.log(anime)
   return dispatch => {
     fetch('http://localhost:3001/animes', {
       method: "POST",
@@ -26,8 +27,9 @@ export const addAnime = (anime, history) => {
 }
 
 export const addLike = (anime, history) => {
-  let id = anime.i
-  console.log(anime)
+  let id = anime.id
+  console.log(anime, "in addLike")
+  console.log(history)
   return dispatch => {
     fetch('http://localhost:3001/animes/' + id, {
       method: "PATCH",
@@ -35,12 +37,12 @@ export const addLike = (anime, history) => {
         "Accept": "application/json",
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ anime })
+      body: JSON.stringify(anime)
     })
       .then(resp => resp.json())
       .then(anime => {
+        //console.log(newLike,"in addLike")
         dispatch({ type: "ADD_LIKE", anime })
-        history.push("/animes")
       })
   }
 }

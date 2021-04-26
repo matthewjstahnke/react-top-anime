@@ -22,10 +22,15 @@ const animesReducer = (state=initialState, action) => {
                 animes: [...state.animes, action.anime]
             }
         case "ADD_LIKE":
-            console.log(this.state.likes)
+            console.log(action.anime,"in aR")
+            let newLike = action.anime.likes += 1
+            action.anime = newLike
+            console.log(action.anime,"in aR2")
+            debugger
+
             return {
                 ...state,
-                likes: this.state.likes + 1
+                animes: action.anime
             }
         default:
             return state;
