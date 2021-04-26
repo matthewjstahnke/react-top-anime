@@ -6,7 +6,7 @@ class Anime extends Component {
         console.log(this)
     }
     render() {
-        const { title, release, genre, episodes, likes } = this.props;
+        const { title, release, genre, episodes, likes, id } = this.props;
         return (
             <div>
                 <h4>{ title }</h4>
